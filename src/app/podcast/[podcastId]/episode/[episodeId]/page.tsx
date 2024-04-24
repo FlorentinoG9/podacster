@@ -1,7 +1,6 @@
 'use client'
 
 import useGetEpisode from '@/hooks/use-get-episode'
-import { content } from '@/lib/test'
 
 import * as React from 'react'
 
@@ -26,10 +25,8 @@ export default function EpisodeView({ params: { episodeId } }: { params: Episode
   )
 }
 
-function Description({ description }: { description?: string }) {
+function Description({ description }: Readonly<{ description?: string }>) {
   const descriptionRef = React.useRef<HTMLDivElement>(null)
-
-  console.info('content', JSON.parse(content))
 
   React.useEffect(() => {
     if (descriptionRef.current && description) {

@@ -23,7 +23,6 @@ export default function usePodcastById() {
     queryFn,
     select: (data) => JSON.parse(data.contents),
     initialData: () => {
-      // Check if we have anything in cache and return that, otherwise get initial data
       const cachedData = queryClient.getQueryData([queryKey])
       if (cachedData) return cachedData
     },

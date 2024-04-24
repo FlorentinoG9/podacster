@@ -10,7 +10,7 @@ export default function useFilteredPodcast() {
 
   const search = useAtomValue(filterSearch)
 
-  return React.useMemo(() => {
+  return React.useMemo<Podcast[]>(() => {
     if (!podcasts.data) return []
 
     const lowerSearch = search.toLowerCase()

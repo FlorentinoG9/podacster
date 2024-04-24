@@ -12,7 +12,7 @@ export default function FilterPodcast() {
   return (
     <section className='flex items-center w-full gap-3 self-end pb-5 px-10'>
       <p className='shrink-0 bg-blue-500 text-white px-2 h-8 w-10 flex items-center justify-center rounded-md sm:ml-auto'>
-        {podcasts.length ?? 0}
+        {podcasts?.length ?? 0}
       </p>
 
       <Input

@@ -1,4 +1,5 @@
 'use client'
+import { Podcast } from '@/lib/types'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 
 export default function usePodcastList<T>() {
@@ -20,7 +21,7 @@ export default function usePodcastList<T>() {
   return useQuery({
     queryKey,
     queryFn,
-    select: (data) => data.feed.entry,
+    select: (data) => data.feed.entry as Podcast[],
     initialData: () => {
       // Check if we have anything in cache and return that, otherwise get initial data
       const cachedData = queryClient.getQueryData<T | undefined>([queryKey])
