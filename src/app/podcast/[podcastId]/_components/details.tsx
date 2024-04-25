@@ -24,6 +24,7 @@ export default function PodcastDetails() {
   return (
     <article className='max-w-sm w-full h-fit'>
       <header className='border rounded'>
+        <h1 data-testid='podcast-details' className='sr-only'>Podcast</h1>
         <div className='py-5 px-10 flex items-center justify-center'>
           <Image
             src={podcast['im:image'][2].label}

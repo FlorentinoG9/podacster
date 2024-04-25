@@ -31,6 +31,7 @@ describe('Home Page', () => {
     it('should navigate to podcast page when click on podcast item', () => {
       cy.getByTestId('podcast-item').first().click()
       cy.url().should('include', '/podcast/')
+      cy.getByTestId('podcast-details').should('have.text', 'Podcast')
     })
   })
 
@@ -45,6 +46,7 @@ describe('Home Page', () => {
       cy.getByTestId('episode-item').first().click()
 
       cy.url().should('include', '/episode/')
+      cy.getByTestId('episode-details').should('have.text', 'Episode')
     })
   })
 })
