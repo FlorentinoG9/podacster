@@ -52,6 +52,7 @@ export default function PodcastView({ params }: { params: { podcastId: string } 
                       <Link
                         href={`/podcast/${params.podcastId}/episode/${episode.trackId}`}
                         className='text-blue-500 hover:underline'
+                        data-testid='episode-item'
                       >
                         {episode.trackName}
                       </Link>

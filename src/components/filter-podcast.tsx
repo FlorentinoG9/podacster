@@ -16,6 +16,7 @@ export default function FilterPodcast() {
       </p>
 
       <Input
+        data-testid='search-input'
         value={search}
         onChange={(event) => setSearch(event.target.value)}
         className='w-full flex-1 sm:w-96 sm:flex-none'

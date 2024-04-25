@@ -15,4 +15,36 @@ describe('Home Page', () => {
       cy.getByTestId('podcast-item').should('have.length', 100)
     })
   })
+
+  context('Search', () => {
+    it('should have a search input', () => {
+      cy.getByTestId('search-input').should('exist')
+    })
+
+    it('should filter the podcasts by search input', () => {
+      cy.getByTestId('search-input').type('joe')
+      cy.getByTestId('podcast-item').should('have.lengthOf.at.least', 1)
+    })
+  })
+
+  context('Podcast Page', ()=> {
+    it('should navigate to podcast page when click on podcast item', () => {
+      cy.getByTestId('podcast-item').first().click()
+      cy.url().should('include', '/podcast/')
+    })
+  })
+
+  context('Podcast Episode Page', ()=> {
+    it('should navigate to podcast episode page when click on episode item', () => {
+      cy.getByTestId('podcast-item').first().click()
+      
+      cy.intercept('GET', 'https://api.allorigins.win/get?url=*').as('getEpisodes')
+
+      cy.wait('@getEpisodes')
+      
+      cy.getByTestId('episode-item').first().click()
+
+      cy.url().should('include', '/episode/')
+    })
+  })
 })
