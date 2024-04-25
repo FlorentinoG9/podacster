@@ -17,4 +17,4 @@ To deploy the app to a production environment, follow these steps:
 
 1. Build the production-ready code: `npm run build`
 2. Build the production-ready code: `npm run start`
-3. Copy the contents of the `build` folder to your web server.
+3. Open your browser and navigate to `http://localhost:3000` to view the app.
