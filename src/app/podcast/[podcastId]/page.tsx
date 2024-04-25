@@ -33,7 +33,6 @@ export default function PodcastView({ params }: { params: { podcastId: string } 
       <article className='w-full flex flex-col gap-5'>
         <header className='border rounded shadow w-full p-3'>
           <h2 className='text-xl font-bold'>Episodes: {episodes.length}</h2>
-
         </header>
 
         <footer className='border overflow-hidden overflow-y-auto'>

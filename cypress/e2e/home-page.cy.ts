@@ -27,7 +27,7 @@ describe('Home Page', () => {
     })
   })
 
-  context('Podcast Page', ()=> {
+  context('Podcast Page', () => {
     it('should navigate to podcast page when click on podcast item', () => {
       cy.getByTestId('podcast-item').first().click()
       cy.url().should('include', '/podcast/')
@@ -35,14 +35,14 @@ describe('Home Page', () => {
     })
   })
 
-  context('Podcast Episode Page', ()=> {
+  context('Podcast Episode Page', () => {
     it('should navigate to podcast episode page when click on episode item', () => {
       cy.getByTestId('podcast-item').first().click()
-      
+
       cy.intercept('GET', 'https://api.allorigins.win/get?url=*').as('getEpisodes')
 
       cy.wait('@getEpisodes')
-      
+
       cy.getByTestId('episode-item').first().click()
 
       cy.url().should('include', '/episode/')

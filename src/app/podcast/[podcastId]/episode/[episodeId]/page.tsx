@@ -14,7 +14,9 @@ export default function EpisodeView({ params: { episodeId } }: { params: Episode
   return (
     <section className='flex-1 h-fit w-full border flex flex-col gap-5 p-5 rounded'>
       <header className='flex flex-col gap-2'>
-        <span data-testid='episode-details' className='sr-only'>Episode</span>
+        <span data-testid='episode-details' className='sr-only'>
+          Episode
+        </span>
         <h1 className='text-xl font-bold'>{episode?.trackName}</h1>
         <Description description={episode?.description} />
       </header>
