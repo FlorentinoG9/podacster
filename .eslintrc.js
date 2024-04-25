@@ -18,7 +18,7 @@ module.exports = {
       },
       files: ['.eslintrc.{js,cjs}'],
       parserOptions: {
-        project: './tsconfig.json',
+        project: 'tsconfig.json',
         sourceType: 'script',
       },
     },

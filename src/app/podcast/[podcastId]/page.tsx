@@ -7,12 +7,16 @@ import usePodcastById from '@/hooks/use-podcast-by-id'
 import { Episode } from '@/lib/types'
 import { produce } from 'immer'
 import Link from 'next/link'
-import { Suspense } from 'react'
 
 export default function PodcastView({ params }: { params: { podcastId: string } }) {
   const podcast = usePodcastById()
 
-  if (podcast.isLoading) return <div>Loading...</div>
+  if (podcast.isLoading)
+    return (
+      <section className='flex gap-10 w-full'>
+        <Skeleton />
+      </section>
+    )
   if (podcast.isError) return <div>Error: {podcast.error.message}</div>
   if (!podcast.data) return <div>No podcast found</div>
 
@@ -25,49 +29,47 @@ export default function PodcastView({ params }: { params: { podcastId: string } 
   })
 
   return (
-    <Suspense fallback={<Skeleton />}>
-      <section className='flex gap-10 w-full'>
-        <article className='w-full flex flex-col gap-5'>
-          <header className='border rounded shadow w-full p-3'>
-            <h2 className='text-xl font-bold'>Episodes: {episodes.length}</h2>
-          </header>
+    <section className='flex gap-10 w-full'>
+      <article className='w-full flex flex-col gap-5'>
+        <header className='border rounded shadow w-full p-3'>
+          <h2 className='text-xl font-bold'>Episodes: {episodes.length}</h2>
+        </header>
 
-          <footer className='border overflow-hidden overflow-y-auto'>
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead className='w-full'>Title</TableHead>
-                  <TableHead>Date</TableHead>
-                  <TableHead>Duration</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {episodes.map((episode: Episode) => {
-                  return (
-                    <TableRow key={episode.trackId} className='odd:bg-slate-100 h-7 py-2'>
-                      <TableCell>
-                        <Link
-                          href={`/podcast/${params.podcastId}/episode/${episode.trackId}`}
-                          className='text-blue-500 hover:underline'
-                        >
-                          {episode.trackName}
-                        </Link>
-                      </TableCell>
-                      <TableCell className='whitespace-nowrap'>
-                        <ShowDate date={episode.releaseDate} />
-                      </TableCell>
-                      <TableCell>
-                        <ShowDuration duration={episode.trackTimeMillis} />
-                      </TableCell>
-                    </TableRow>
-                  )
-                })}
-              </TableBody>
-            </Table>
-          </footer>
-        </article>
-      </section>
-    </Suspense>
+        <footer className='border overflow-hidden overflow-y-auto'>
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead className='w-full'>Title</TableHead>
+                <TableHead>Date</TableHead>
+                <TableHead>Duration</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {episodes.map((episode: Episode) => {
+                return (
+                  <TableRow key={episode.trackId} className='odd:bg-slate-100 h-7 py-2'>
+                    <TableCell>
+                      <Link
+                        href={`/podcast/${params.podcastId}/episode/${episode.trackId}`}
+                        className='text-blue-500 hover:underline'
+                      >
+                        {episode.trackName}
+                      </Link>
+                    </TableCell>
+                    <TableCell className='whitespace-nowrap'>
+                      <ShowDate date={episode.releaseDate} />
+                    </TableCell>
+                    <TableCell>
+                      <ShowDuration duration={episode.trackTimeMillis} />
+                    </TableCell>
+                  </TableRow>
+                )
+              })}
+            </TableBody>
+          </Table>
+        </footer>
+      </article>
+    </section>
   )
 }
 
