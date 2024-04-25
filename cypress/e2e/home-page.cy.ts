@@ -10,10 +10,9 @@ describe('Home Page', () => {
   })
 
   context('Podcasts', () => {
-    it('should have a list of podcasts', () => {
-      cy.intercept('GET', 'https://itunes.apple.com/search?term=podcast&media=podcast&limit=10').as('podcasts')
-      cy.wait('@podcasts')
+    it('should have a list of podcasts and have 100 items', () => {
       cy.getByTestId('podcast-list').should('exist')
+      cy.getByTestId('podcast-item').should('have.length', 100)
     })
   })
 })
