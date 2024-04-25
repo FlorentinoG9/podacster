@@ -12,7 +12,10 @@ export default function Podcasts() {
   const podcasts = useFilteredPodcast()
 
   return (
-    <ul className='grid grid-cols-2 sm:grid-cols-[repeat(auto-fill,minmax(250px,200px))] gap-10 place-content-between px-10'>
+    <ul
+      data-testid='podcast-list'
+      className='grid grid-cols-2 sm:grid-cols-[repeat(auto-fill,minmax(250px,200px))] gap-10 place-content-between px-10'
+    >
       {podcasts?.map((podcast: Podcast) => {
         const author = podcast['im:artist'].label
         const label = podcast['im:name'].label
@@ -20,7 +23,7 @@ export default function Podcasts() {
         const id = podcast.id.attributes['im:id']
 
         return (
-          <li key={id}>
+          <li key={id} data-testid='podcast-item'>
             <Link href={`/podcast/${id}`} className='group'>
               <PodcastCard author={author} label={label} image={image} />
             </Link>

@@ -23,7 +23,6 @@ export default function usePodcastList<T>() {
     queryFn,
     select: (data) => data.feed.entry as Podcast[],
     initialData: () => {
-      // Check if we have anything in cache and return that, otherwise get initial data
       const cachedData = queryClient.getQueryData<T | undefined>([queryKey])
       if (cachedData) return cachedData
     },
