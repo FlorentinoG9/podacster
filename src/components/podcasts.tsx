@@ -14,7 +14,7 @@ export default function Podcasts() {
   return (
     <ul
       data-testid='podcast-list'
-      className='grid grid-cols-2 sm:grid-cols-[repeat(auto-fill,minmax(250px,200px))] gap-10 place-content-between px-10'
+      className='grid grid-cols-2 sm:grid-cols-[repeat(auto-fill,minmax(200px,250px))] gap-10 place-content-between px-10 mx-auto'
     >
       {podcasts?.map((podcast: Podcast) => {
         const author = podcast['im:artist'].label
@@ -36,11 +36,11 @@ export default function Podcasts() {
 
 function PodcastCard({ author, label, image }: { author: string; label: string; image: string }) {
   return (
-    <section className='flex flex-col items-center'>
+    <section className='flex flex-col items-center w-auto'>
       <header>
-        <Image src={image} alt={label} width={150} height={150} className='rounded-full border' priority />
+        <Image src={image} alt={label} width={150} height={150} className='rounded-full border w-24 sm:w-40' priority />
       </header>
-      <footer className='border h-32 shadow-md gap-2 pb-2 rounded flex items-center -mt-16 -z-10 w-56 flex-col justify-end group-hover:shadow-lg group-hover:bg-gray-100/50 duration-200'>
+      <footer className='border h-16 overflow-hidden sm:h-32 shadow-md gap-2 pb-2 rounded flex items-center sm:-mt-16 -z-10 w-full flex-col justify-end group-hover:shadow-lg group-hover:bg-gray-100/50 duration-200'>
         <h3 className='text-sm text-center truncate w-52'>{label}</h3>
         <p className='text-xs text-gray-500 text-center truncate w-52'>
           <span>Author: {author}</span>
